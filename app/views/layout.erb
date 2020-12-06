@@ -2,14 +2,32 @@
 <html>
   <head>
     <title>Fwitter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
   </head>
   <body>
 
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
+    <header>
+      <!-- Nav example from Bootstrap website -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Fwitter Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <% if logged_in? %>
+              <a class="nav-item nav-link" href="/users/<%= current_user.slug %>"><%= current_user.username %></a>
+            <% else %>
+              <a class="nav-item nav-link" href="/login">Log in</a>
+              <a class="nav-item nav-link" href="/signup">Sign up</a>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <%= yield %>
 
   </body>
 </html>
